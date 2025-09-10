@@ -32,7 +32,7 @@ const pillars = [
 
 export default function Pillars() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50"   id="pillars">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
         {/* Left Side */}

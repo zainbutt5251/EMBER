@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 import logo from "../assets/logo.png";
 const navigation = [
-  { name: "Solutions", href: "#home", icon: <ChevronDown /> },
-  { name: "Methodology", href: "#services", icon: <ChevronDown /> },
-  { name: "Pillars", href: "#testimonials", icon: <ChevronDown /> },
+  { name: "Solutions", href: "#solution", icon: <ChevronDown /> },
+  { name: "Methodology", href: "#methodology", icon: <ChevronDown /> },
+  { name: "Pillars", href: "#pillars", icon: <ChevronDown /> },
   { name: "Insights", href: "#contact", icon: <ChevronDown /> },
   { name: "About Us", href: "#contact" },
 ];

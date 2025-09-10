@@ -14,7 +14,7 @@ import banner from "../assets/bannerimg.png";
 export default function Hero() {
   return (
     <section
-      id="home"
+     
       className="bg-[#18203a] relative px-6 pt-20 lg:px-8 min-h-screen flex items-center"
     >
       <div className="mx-auto max-w-7xl py-32 sm:py-48 lg:py-56 w-full">
