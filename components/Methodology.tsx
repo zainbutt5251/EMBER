@@ -1,14 +1,24 @@
-import React from "react";
-import { PlayCircle } from "lucide-react";
+"use client";
+
+import React, { useState } from "react";
+import { PlayCircle, Plus, Minus } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import methodology from "../assets/methodology.png";
+
 const Methodology = () => {
   const steps = [
-    { id: "01", title: "Discover" },
-    { id: "02", title: "Decode", sub: "Decode local dynamics", active: true },
-    { id: "03", title: "Design" },
-    { id: "04", title: "Deliver" },
-    { id: "05", title: "Transfer" },
+    { id: "01", title: "Discover", sub: "Discover" },
+    { id: "02", title: "Decode", sub: "Decode local dynamics" },
+    { id: "03", title: "Design", sub: "Customize expansion strategies" },
+    { id: "04", title: "Deliver", sub: "Execute with agility and precision" },
+    { id: "05", title: "Transfer", sub: "Handover systems and operations" },
   ];
+
+  const [openStep, setOpenStep] = useState(null);
+
+  const toggleStep = (id) => {
+    setOpenStep((prev) => (prev === id ? null : id));
+  };
 
   return (
     <section className="py-20 bg-gray-50">
@@ -16,7 +26,7 @@ const Methodology = () => {
         {/* Left Section */}
         <div className="flex-1">
           <p className="text-xs tracking-widest text-gray-500 font-medium mb-3">
-            METHODOLOGY
+            » METHODOLOGY
           </p>
           <h2 className="text-3xl font-bold text-slate-900 leading-snug mb-4">
             Methodology:{" "}
@@ -30,7 +40,7 @@ const Methodology = () => {
             <img
               src={methodology.src}
               alt="Video Preview"
-              className="w-full   object-cover"
+              className="w-full object-cover"
             />
             <button className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
               <PlayCircle size={32} />
@@ -41,40 +51,68 @@ const Methodology = () => {
 
         {/* Right Section */}
         <div className="flex-1 flex flex-col justify-center">
-          {steps.map((step) => (
-            <div
-              key={step.id}
-              className="flex items-start gap-4 mb-6 last:mb-0"
-            >
-              {/* Circle */}
+          {steps.map((step) => {
+            const isOpen = openStep === step.id;
+            return (
               <div
-                className={`w-10 h-10 flex items-center justify-center rounded-full border font-semibold text-sm ${
-                  step.active
-                    ? "bg-slate-900 text-white border-slate-900"
-                    : "border-gray-300 text-gray-500"
-                }`}
+                key={step.id}
+                className="flex items-start gap-4 mb-10 last:mb-0"
               >
-                {step.id}
-              </div>
-
-              {/* Step Content */}
-              <div className="flex-1 border-b border-gray-200 pb-4">
-                <div className="flex items-center justify-between">
-                  <h4
-                    className={`font-semibold ${
-                      step.active ? "text-slate-900" : "text-gray-800"
-                    }`}
-                  >
-                    {step.title}
-                  </h4>
-                  <span className="text-gray-700">+</span>
+                {/* Circle Step Number */}
+                <div
+                  className={`w-10 h-10 flex items-center justify-center rounded-full border font-semibold text-sm shrink-0 ${
+                    isOpen
+                      ? "bg-slate-900 text-white border-slate-900"
+                      : "border-gray-300 text-gray-500"
+                  }`}
+                >
+                  {step.id}
                 </div>
-                {step.sub && (
-                  <p className="text-gray-500 text-sm mt-1">{step.sub}</p>
-                )}
+
+                {/* Step Content */}
+                <div className="flex-1 border-b border-gray-200 pb-4">
+                  <div className="flex items-center justify-between">
+                    <h4
+                      className={`font-semibold ${
+                        isOpen ? "text-slate-900" : "text-gray-800"
+                      }`}
+                    >
+                      {step.title}
+                    </h4>
+
+                    {/* Toggle Button */}
+                    {step.sub && (
+                      <button
+                        onClick={() => toggleStep(step.id)}
+                        className="text-gray-700 hover:text-gray-900 transition"
+                      >
+                        {isOpen ? (
+                          <Minus className="w-4 h-4" />
+                        ) : (
+                          <Plus className="w-4 h-4" />
+                        )}
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Sub Description */}
+                  <AnimatePresence>
+                    {isOpen && step.sub && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-gray-500 text-sm mt-2 overflow-hidden"
+                      >
+                        {step.sub}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

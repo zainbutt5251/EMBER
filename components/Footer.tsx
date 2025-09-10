@@ -2,7 +2,7 @@
 
 import { Flame, Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logo from '../assets/logo.png';
+import logo from '../assets/footerlogo.png';
 
 const navigation = {
   services: [

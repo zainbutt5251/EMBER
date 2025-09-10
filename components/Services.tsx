@@ -3,24 +3,26 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Lightbulb, Globe, Settings } from 'lucide-react';
-
+import pillar1 from "../assets/pillar1.png"
+import pillar2 from "../assets/pillar2.png"
+import pillar3 from "../assets/pillar3.png"
 const pillars = [
   {
-    icon: Lightbulb,
+    img: pillar1.src,
     title: 'Strategic Intelligence & Market Mastery',
     description:
       'Market analysis, cultural insight, and competitive positioning with the <b>ECG Market Penetration Matrix</b>.',
     marginleft: 0,
   },
   {
-    icon: Globe,
+     img: pillar2.src,
     title: 'Regulatory Navigation & Government <br/> Relations',
     description:
       '95% approval success rate, <i>policy advocacy</i>, and faster compliance.',
     marginleft: 15,
   },
   {
-    icon: Settings,
+     img: pillar3.src,
     title: 'Operational Excellence & <em>Implementation</em>',
     description:
       'Build-Operate-Transfer execution model, <u>entity setup</u>, and end-to-end operations.',
@@ -65,9 +67,10 @@ export default function Pillars() {
               <div style={{ marginLeft: pillar.marginleft }}>
                 <Card className="h-full shadow-sm hover:shadow-md transition-all duration-300 rounded-xl bg-white">
                   <CardContent className="flex gap-2 items-start p-4">
-                    <div className="flex-shrink-0 w-16 h-16 overflow-hidden rounded-md">
-                      <pillar.icon className="w-8 h-8 text-blue-600 mx-auto my-4" />
-                    </div>
+                    <div className="flex-shrink-0 w-16 h-18 overflow-hidden rounded-md pt-2">
+                      
+                       <img src={pillar.img} alt="" />
+                      </div>
                     <div>
                       <h3
                         className="text-lg font-semibold text-gray-900 mb-1"

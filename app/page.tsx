@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import CoreService from '@/components/Coreservice';
 import Methodology from '@/components/Methodology';
 import Global from '@/components/Global';
+import CaseStudies from '@/components/CaseStudies';
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
       <CoreService/>
       <Methodology/>
       <Global/>
-       
+       <CaseStudies/>
       <Footer />
     </main>
   );
