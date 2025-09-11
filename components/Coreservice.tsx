@@ -32,7 +32,7 @@ const services = [
 
 export default function CoreService() {
   return (
-    <section className="w-full bg-[#f9f5ef] py-16 px-6 rounded-2xl">
+    <section className="w-full bg-[#f9f5ef] py-16 px-6 rounded-2xl"id="solution" >
       {/* Section Heading */}
       <div className="m-5 bg-[#EEE5D8] p-2 rounded-md py-5">
         <div className="text-center mb-12">

@@ -1,20 +1,42 @@
 "use client";
 
-import { Facebook, Instagram, X, Linkedin, SendHorizonal } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  X,
+  Linkedin,
+  SendHorizonal,
+  ChevronRight,
+} from "lucide-react";
 import footerlogo from "../assets/footerlogo.png";
 import bgimageend from "../assets/bgimageend.png";
+import { Button } from "react-day-picker";
 export default function Footer() {
   return (
     <>
       <section
-        className="w-full bg-[#f9f5ef] py-16 px-6 rounded-2xl bg-cover bg-center"
+        className="w-full bg-[#f9f5ef] py-8 px-6 rounded-2xl bg-cover bg-center"
         style={{
           backgroundImage: `url(${bgimageend.src})`,
         }}
       >
-       
-       
-        
+        <div className="bg-[#EEE5D8] p-5 rounded-md grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+          {/* Left Column - Text */}
+          <div>
+            <h1 className="text-lg" style={{fontSize:"30px"}}>
+              Ready to Expand Globally with Confidence?
+            </h1>
+
+            <p className="py-4">Lets turn complexity into your competitive advantage.</p>
+          </div>
+
+          {/* Right Column - Button */}
+          <div className="flex md:justify-end">
+            <button className="bg-[#1f263a] text-white flex items-center gap-2 rounded p-3">
+            Contact Us <ChevronRight />
+            </button>
+          </div>
+        </div>
       </section>
       <footer className="bg-[#0E1832] text-white pt-16 pb-10 px-6">
         {/* Section Heading */}

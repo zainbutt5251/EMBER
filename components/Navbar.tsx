@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import logo from "../assets/logo.png";
 const navigation = [
-  { name: "Solutions", href: "#solution", icon: <ChevronDown /> },
+{ name: "Solutions", href: "#solution", icon: <ChevronDown /> },
   { name: "Methodology", href: "#methodology", icon: <ChevronDown /> },
   { name: "Pillars", href: "#pillars", icon: <ChevronDown /> },
   { name: "Insights", href: "#contact", icon: <ChevronDown /> },
@@ -97,101 +97,95 @@ export default function Navbar() {
         </motion.div>
       </nav>
 
+     
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="lg:hidden fixed inset-0 z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="lg:hidden fixed inset-0 z-50 bg-white"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-              <div className="flex items-center justify-between">
-                <a
-                  href="#"
-                  className="-m-1.5 p-1.5 flex items-center space-x-2"
-                >
-                  <img src={logo.src} alt="Company Logo" className="h-8 w-auto" />
-                </a>
+            <div className="p-6 space-y-4 bg-white">
+              {/* Close button */}
+              <div className="flex justify-between items-center">
+                <img src={logo.src} alt="Company Logo" className="h-8 w-auto" />
                 <button
                   type="button"
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                  className="p-2 text-gray-700"
                   onClick={() => setMobileMenuOpen(false)}
-                  aria-label="Close menu"
                 >
-                  <X className="h-6 w-6" aria-hidden="true" />
+                  <X className="h-6 w-6" />
                 </button>
               </div>
-              <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-gray-500/10">
-                  <div className="space-y-2 py-6">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                        onClick={() => setMobileMenuOpen(false)}
+
+              {/* Navigation links */}
+              <div className="space-y-2">
+                {navigation.map((item) =>
+                  item.submenu ? (
+                    <div key={item.name}>
+                      <button
+                        className="flex w-full justify-between items-center px-3 py-2 rounded-lg text-gray-900 hover:bg-gray-100"
+                        onClick={() => toggleSubMenu(item.name)}
                       >
                         {item.name}
-                      </a>
-                    ))}
-                    <div className="group relative">
-                      <button
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 w-full text-left"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Solutions
+                        {activeSubMenu === item.name ? (
+                          <ChevronUp size={18} />
+                        ) : (
+                          <ChevronDown size={18} />
+                        )}
                       </button>
-                      <div className="absolute left-4 mt-1 w-48 rounded-md bg-white shadow-lg py-1">
-                        <a
-                          href="#solutions"
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          Solutions
-                        </a>
-                        <a
-                          href="#methodology"
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          Methodology
-                        </a>
-                        <a
-                          href="#pillars"
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          Pillars
-                        </a>
-                        <a
-                          href="#insights"
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          Insights
-                        </a>
-                      </div>
+
+                      <AnimatePresence>
+                        {activeSubMenu === item.name && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="pl-4 space-y-1"
+                          >
+                            {item.submenu.map((sub) => (
+                              <a
+                                key={sub.name}
+                                href={sub.href}
+                                className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                {sub.name}
+                              </a>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
+                  ) : (
                     <a
-                      href="#about-us"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      key={item.name}
+                      href={item.href}
+                      className="block px-3 py-2 rounded-lg text-gray-900 hover:bg-gray-100"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      About Us
+                      {item.name}
                     </a>
-                  </div>
-                  <div className="py-6">
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                      Get Started
-                    </Button>
-                  </div>
-                </div>
+                  )
+                )}
+              </div>
+
+              {/* CTA */}
+              <div>
+                <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  Get Started
+                </Button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+ 
+ 
+
     </header>
   );
 }
